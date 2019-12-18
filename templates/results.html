@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			body {
+			background-color: MistyRose;
+			}
+			table {
+			text-align: center;
+			}
+			h1, h3, p{
+			text-align: center;
+			background-color: MistyRose;
+			}
+			
+		</style>
+	</head>
+
+<head>
+	<body>
+    <meta charset="UTF-8">
+	<div class="jumbotron text-center",>
+		<h1>Спасибо за участие в опросе!</h1>
+		<h3>Здесь вы можете увидеть результаты опроса</h3>
+		<p>Количество участников: {{ all_info['part'] }} </p>
+		<p>Средний возраст участников:   {{ all_info['age_av'] }}   </p>
+	</div>
+
+    <title>Статистика по опросу</title>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+	</body>
+
+ <body>
+
+  <center>
+
+    <canvas id="chart" width="600" height="400"></canvas>
+
+    <script>
+
+      // bar chart data
+
+      var barData = {
+
+        labels : [
+
+          {% for item in labels %}
+
+           "{{ item }}",
+
+          {% endfor %}
+
+	],
+
+
+
+        datasets : [{
+
+          fillColor: "hsl(0, 30%, 60%)",
+
+          strokeColor: "hsl(0, 30%, 60%)",
+
+          pointColor: "hsl(0, 45%, 10%)",
+
+          data : [
+
+            {% for item in values %}
+
+               "{{ item }}",
+
+              {% endfor %}
+
+	    ]
+
+          }
+
+        ]
+
+      }
+
+
+
+     // get bar chart canvas
+
+     var mychart = document.getElementById("chart").getContext("2d");
+
+
+
+       steps = 10
+
+       max = 5
+
+
+
+     // draw bar chart
+
+     new Chart(mychart).Bar(barData, {
+
+       scaleOverride: true,
+
+       scaleSteps: steps,
+
+       scaleStepWidth: Math.ceil(max / steps),
+
+       scaleStartValue: 0,
+
+       scaleShowVerticalLines: true,
+
+       scaleShowGridLines : true,
+
+       barShowStroke : true,
+
+       scaleShowLabels: true
+
+       }
+
+     );
+
+
+
+    </script>
+
+  </center>
+
+</body>
+<body>
+	<p><a href='/process'>Вернуться на страницу опроса</a></p>
+</body>
+
+</html>

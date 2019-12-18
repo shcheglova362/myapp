@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			body{
+				background: url('static/pic5.jpg');
+				background-size: auto;
+				color: hsl(0, 45%, 23%)
+			}
+		</style>
+</body>
+</html>
+	</head>
+	<body>
+		<div class="jumbotron text-center">
+			<h1>Вопросы, которые мне не дают покоя:</h1>
+		</div>
+			<form class="container" action="/process">
+			<h3>Общие вопросы</h3>
+			<div class="row">
+				<div class="text-left">Возраст</div>
+				<div class="col-md-4"><input type="number" name="age"></div>
+			</div>
+			<div class="row">
+				<div class="text-left">Гендер</div>
+				<select name="gender" class="col-md-4">
+					<option value="male">мужской</option>
+					<option value="female">женский</option>
+					<option value="other">другой</option>
+				</select>
+			</div>
+			<div class="row">
+				<div class="text-left">Уровень образования</div>
+				<select name="education" class="col-md-4">
+					<option value="school_9">9 классов школы</option>
+					<option value="school_11">11 классов школы</option>
+					<option value="college">среднее специальное</option>
+					<option value="student">неоконченное высшее</option>
+					<option value="bachelor">бакалавриат/специалитет</option>
+					<option value="master">магистратура</option>
+					<option value="phd">аспирантура</option>
+					<option value="candidate">кандидат наук</option>
+					<option value="doctor">доктор наук</option>
+				</select>
+			</div>
+			<h2>Прочитайте слова и их значения. Этих слов нет в русском языке. Выберите варинт, на сколько вам их не хватает.</h2>
+            {% for question in questions %}
+			    <div class="row">
+				    <p class="col-md-6">{{question.text}}</p>
+					<table class="col-md-8">
+						<tr>
+							<td><input class="radio" type="radio" name="q{{ question.id }}" value=5></td>
+							<td><input class="radio" type="radio" name="q{{ question.id }}" value=4></td>
+							<td><input class="radio" type="radio" name="q{{ question.id }}" value=3></td>
+							<td><input class="radio" type="radio" name="q{{ question.id }}" value=2></td>
+							<td><input class="radio" type="radio" name="q{{ question.id }}" value=1></td>
+						</tr>
+						<tr>
+							<td>очень не хватает</td>
+							<td>чуть-чуть не хватает</td>
+							<td>случалось пару раз</td>
+							<td>вроде норм и без него</td>
+							<td>никогда бы не использовал'а'</td>
+						</tr>
+					</table>
+			    </div>
+            {% endfor %}
+			<div class="row">
+				<input class="submit" type="submit" name="submit" value="Отправить">
+			</div>         
+		</form>
+	<style>
+	</style>
+
+<body>
+	</body>
+</html>
